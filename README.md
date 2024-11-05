@@ -1,4 +1,4 @@
-# TESO Watcher
+# TESO Wait Service
 
 ## Преамбула
 В марте 2024 [Zenimax Online Studio](https://www.zenimax.com/) (ZOS) выпустили Update 41 к своей игре [The Elder Scrolls Online](https://www.elderscrollsonline.com/). 
