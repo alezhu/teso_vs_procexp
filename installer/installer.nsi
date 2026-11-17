@@ -1,7 +1,7 @@
 !include "LogicLib.nsh"
 !include "x64.nsh"
 
-!define VERSION "1.0.0"
+!define VERSION "1.0.1"
 !define SERVICE_NAME "TESOWaitService"
 !define DISPLAY_NAME "TESOWaitService"
 Name "${DISPLAY_NAME} Installer"
