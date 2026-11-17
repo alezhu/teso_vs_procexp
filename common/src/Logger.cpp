@@ -4,6 +4,7 @@
 #include <fstream>
 #include <ctime>
 #include <mutex>
+#include <cstdlib>
 
 #include "../include/consts.h"
 
@@ -14,7 +15,20 @@ public:
         : ILogger(),
           m_timeStamp(26, L'\0') {
         OutputDebugStringW((m_debugPrefix + L"Create log").c_str());
-        const auto logPath = std::filesystem::temp_directory_path() / SERVICE_NAME;
+        
+        // Use ProgramData for service logs (persistent, proper permissions for SYSTEM)
+        std::wstring programDataPath;
+        wchar_t* programData = nullptr;
+        size_t len = 0;
+        if (_wdupenv_s(&programData, &len, L"ProgramData") == 0 && programData) {
+            programDataPath = programData;
+            free(programData);
+        } else {
+            // Fallback to temp directory
+            programDataPath = std::filesystem::temp_directory_path().wstring();
+        }
+        
+        const auto logPath = std::filesystem::path(programDataPath) / SERVICE_NAME / L"logs";
         OutputDebugStringW((m_debugPrefix + L"LogPath: " + logPath.wstring()).c_str());
         if (!std::filesystem::exists(logPath)) {
             if (std::filesystem::create_directories(logPath)) {
