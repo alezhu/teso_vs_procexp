@@ -5,7 +5,7 @@ generate_product_version(ProductVersionFiles
         ICON "${CMAKE_CURRENT_SOURCE_DIR}/assets/product.ico"
         VERSION_MAJOR 1
         VERSION_MINOR 0
-        VERSION_PATCH 0
+        VERSION_PATCH 1
         VERSION_REVISION 0
         COMPANY_NAME alezhu)
 add_executable(teso_wait_service
